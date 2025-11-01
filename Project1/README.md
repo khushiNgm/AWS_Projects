@@ -11,6 +11,14 @@ The Load Balancer distributes incoming HTTP traffic evenly across multiple EC2 i
 
 <img src="Image/architecture.png" alt="AWS Architecture" width="550" height="500">
 
+## ⚙️ Technologies Used
+
+1️⃣ Amazon EC2 – to host web servers</br>
+2️⃣ Application Load Balancer (ALB) – to distribute traffic</br>
+3️⃣ Target Group – to define EC2 instances for load balancing</br>
+4️⃣ Security Groups – to control inbound/outbound traffic</br>
+5️⃣ VPC and Subnets – for network isolation and availability zones
+
 ## 🏗️ Architecture Diagram
 
 Below is the architecture diagram representing the project setup:
@@ -28,14 +36,6 @@ Below is the architecture diagram representing the project setup:
         │   EC2 Instance 1 │         │   EC2 Instance 2 │
         │ (us-east-1a)     │         │ (us-east-1b)     │
         └──────────────────┘         └──────────────────┘
-
-## ⚙️ Technologies Used
-
-1️⃣ Amazon EC2 – to host web servers</br>
-2️⃣ Application Load Balancer (ALB) – to distribute traffic</br>
-3️⃣ Target Group – to define EC2 instances for load balancing</br>
-4️⃣ Security Groups – to control inbound/outbound traffic</br>
-5️⃣ VPC and Subnets – for network isolation and availability zones
 
 ## 🪜 Step-by-Step Implementation
 
