@@ -8,7 +8,7 @@ The goal is to automatically maintain application availability and distribute in
 **Load Balancer**.  
 When demand increases, **Auto Scaling** launches new EC2 instances automatically, and when demand decreases, it terminates the unnecessary ones — optimizing both **performance** and **cost**.
 
-<img src="Image/architecture.png" alt="AWS Architecture" style="width:60%; height:20%;">
+<img src="Image/architecture.png" alt="AWS Architecture" style="width:40%; height:30%;">
 
 ## 🏗️ Architecture Diagram
 <Pre>
