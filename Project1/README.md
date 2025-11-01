@@ -1,4 +1,4 @@
-# AWS EC2 Load Balancer Project
+#  Project 1: AWS EC2 Load Balancer Project
 
 ## 📘 Project Overview
 
