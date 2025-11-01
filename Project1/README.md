@@ -9,7 +9,7 @@ The Load Balancer distributes incoming HTTP traffic evenly across multiple EC2 i
 ✅ Each new incoming request is forwarded to the next available EC2 instance in sequence.</br>
 ✅ This helps distribute traffic evenly between all healthy targets, preventing overloading any single instance.
 
-![](Image/architecture.png)
+<img src="Image/architecture.png" alt="AWS Architecture" width="550" height="500">
 
 ## 🏗️ Architecture Diagram
 
