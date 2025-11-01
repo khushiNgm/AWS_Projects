@@ -10,6 +10,17 @@ When demand increases, **Auto Scaling** launches new EC2 instances automatically
 
 <img src="Image/architecture.png" alt="AWS Architecture" width="550" height="500">
 
+## ⚙️ Technologies Used
+<pre>
+1️⃣ **Amazon EC2** – to host scalable web servers  
+2️⃣ **Launch Template** – to define instance configurations  
+3️⃣ **Auto Scaling Group** – to automatically scale EC2 instances  
+4️⃣ **Application Load Balancer (ALB)** – to distribute traffic  
+5️⃣ **Target Group** – to route requests to healthy instances  
+6️⃣ **Amazon SNS** – for Auto Scaling notifications  
+7️⃣ **VPC & Subnets** – for networking and multi-AZ architecture  
+</pre>
+
 ## 🏗️ Architecture Diagram
 <Pre>
             ┌─────────────────────────────┐
@@ -33,17 +44,6 @@ When demand increases, **Auto Scaling** launches new EC2 instances automatically
 │   EC2 Instance #1  │           │   EC2 Instance #2  │
 │ (From Launch Temp) │           │ (From Launch Temp) │
 └────────────────────┘           └────────────────────┘
-</pre>
-
-## ⚙️ Technologies Used
-<pre>
-1️⃣ **Amazon EC2** – to host scalable web servers  
-2️⃣ **Launch Template** – to define instance configurations  
-3️⃣ **Auto Scaling Group** – to automatically scale EC2 instances  
-4️⃣ **Application Load Balancer (ALB)** – to distribute traffic  
-5️⃣ **Target Group** – to route requests to healthy instances  
-6️⃣ **Amazon SNS** – for Auto Scaling notifications  
-7️⃣ **VPC & Subnets** – for networking and multi-AZ architecture  
 </pre>
 
 ## 🪜 Step-by-Step Implementation
