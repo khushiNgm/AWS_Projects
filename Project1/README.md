@@ -46,7 +46,7 @@ sudo yum update -y
 sudo yum install httpd -y
 sudo systemctl start httpd
 sudo systemctl enable httpd
-echo "<h4>Welcome to EC2-Server-1</h4>">/var/www/html/index.html
+echo "Welcome to EC2-Server-1">/var/www/html/index.html
 </pre>
 
 (Repeat for the second instance and change the text to “EC2-Server-2”)
@@ -90,12 +90,12 @@ Step3: If you see Unused or Unhealthy, ensure:
 
 <pre>
 Example output:
-Welcome to EC2-Server-1</br>
-Welcome to EC2-Server-2</br>
+Welcome to EC2-Server-1
+Welcome to EC2-Server-2
 </pre>
 
 
-## 🧾 Author
+# 🧾 Author
 
-Khushi Nigam
+## Khushi Nigam
 AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
