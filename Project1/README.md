@@ -9,6 +9,8 @@ The Load Balancer distributes incoming HTTP traffic evenly across multiple EC2 i
 ✅ Each new incoming request is forwarded to the next available EC2 instance in sequence.</br>
 ✅ This helps distribute traffic evenly between all healthy targets, preventing overloading any single instance.
 
+![](Image/architecture.png)
+
 ## 🏗️ Architecture Diagram
 
 Below is the architecture diagram representing the project setup:
@@ -42,6 +44,7 @@ Below is the architecture diagram representing the project setup:
 Launch two EC2 instances using Ubuntu AMI.
 <pre>
 ******** Install and configure a simple web server: ********
+# !/bin/bash 
 sudo yum update -y
 sudo yum install httpd -y
 sudo systemctl start httpd
@@ -51,27 +54,40 @@ echo "Welcome to EC2-Server-1">/var/www/html/index.html
 
 (Repeat for the second instance and change the text to “EC2-Server-2”)
 Ensure both instances are in different Availability Zones (e.g., us-east-1a and us-east-1b).
+![](Image/Task01.png)
 
 ## 2. Create a Target Group
 <pre>
-Step1: Navigate to EC2 → Target Groups → Create Target Group.</br>
-Step2: Target type: Instance</br>
-Step3: Protocol: HTTP</br>
-Step4: Port: 80</br>
+Navigate to EC2 → Target Groups → Create Target Group.</br>
+Step 1: Target type: Instance</br>
+Step 2: Target group name</br>
+Step 2: Protocol: HTTP</br>
+Step 3: Port: 80</br>
+Step 4: IP address type: IPv4</br>
+Step 5: Select VPC: default </br>
+Step 5: Protocol version: HTTP1</br>
+<h2>Health checks</h2>
+Step 6: Health check protocol: HTTP</br>
+Step 7: Health check path: /index.html </br>
+
 Register both EC2 instances to the Target Group.
 </pre>
-
+![](Image/Task02.png)
 ## 3. Create an Application Load Balancer
 <pre>
-Step1: Go to EC2 → Load Balancers → Create Load Balancer → Application Load Balancer.
+Go to EC2 → Load Balancers → Create Load Balancer → Application Load Balancer.
+
+Step1: Load balancer name: ALB
 Step2: Scheme: Internet-facing
-Step3: IP address type: IPv4
-Step4 :Select at least two subnets (us-east-1a and us-east-1b).
+Step3: Load balancer IP address type: IPv4
+Step 4: VPC: default
+Step4 : Select at least two subnets (us-east-1a and us-east-1b).
 Step5: Security group: Allow HTTP (port 80).
 Step6: Listener: Protocol – HTTP, Port – 80.
 Step7: Default action: Forward to your Target Group.
+Step 8: Select Target group
 </pre>
-
+![](Image/Task03.png)
 ## 4. Verify Health Checks
 <pre>
 Step1: Go to the Target Group → Targets tab.
@@ -81,12 +97,15 @@ Step3: If you see Unused or Unhealthy, ensure:
  ⬜ Correct Availability Zones are enabled in the load balancer settings.
  ⬜ The Security Group allows inbound HTTP (port 80) traffic.
 </pre>
+![](Image/Task04.png)
 
 ## 5. Test the Load Balancer
 <pre>
 ⬜ Copy the DNS name of your Load Balancer.
 ⬜ Paste it into a web browser.
 ⬜ Refresh multiple times — you should see both EC2 servers responding alternately:</pre>
+
+![](Image/Task05.png)
 
 <pre>
 Example output:
