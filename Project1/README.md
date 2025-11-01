@@ -58,17 +58,17 @@ Ensure both instances are in different Availability Zones (e.g., us-east-1a and 
 
 ## 2. Create a Target Group
 <pre>
-Navigate to EC2 → Target Groups → Create Target Group.</br>
-Step 1: Target type: Instance</br>
-Step 2: Target group name</br>
-Step 2: Protocol: HTTP</br>
-Step 3: Port: 80</br>
-Step 4: IP address type: IPv4</br>
-Step 5: Select VPC: default </br>
-Step 5: Protocol version: HTTP1</br>
+Navigate to EC2 → Target Groups → Create Target Group.
+Step 1: Target type: Instance
+Step 2: Target group name
+Step 2: Protocol: HTTP
+Step 3: Port: 80
+Step 4: IP address type: IPv4
+Step 5: Select VPC: default 
+Step 5: Protocol version: HTTP1
 <h2>Health checks</h2>
-Step 6: Health check protocol: HTTP</br>
-Step 7: Health check path: /index.html </br>
+Step 6: Health check protocol: HTTP
+Step 7: Health check path: /index.html 
 
 Register both EC2 instances to the Target Group.
 </pre>
