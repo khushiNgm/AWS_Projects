@@ -1,4 +1,4 @@
-# 🚀 Project 2: Auto Scaling in AWS EC2 using Launch Templates with Load Balancer Integration
+# 🚀 Solution: Auto Scaling in AWS EC2 using Launch Templates with Load Balancer Integration
 
 ## ✅ 1. Create a Target Group🎯
 ![](Image/TargetGRP.png)

@@ -49,8 +49,7 @@ sudo apt update -y
 sudo apt install apache2 -y
 sudo systemctl start apache2
 sudo systemctl enable apache2
-echo "Welcome to EC2-Server Auto Scaling" | sudo tee /var/www/html/index.html
-
+echo "Welcome to EC2-Server-1" | sudo tee /var/www/html/index.html
 </pre>
 
 (Repeat for the second instance and change the text to “EC2-Server-2”)
@@ -61,7 +60,7 @@ Ensure both instances are in different Availability Zones (e.g., us-east-1a and 
 <pre>
 Navigate to EC2 → Target Groups → Create Target Group.
 Step 1: Target type: Instance
-Step 2: Target group name
+Step 2: Target group name: TargetGp
 Step 2: Protocol: HTTP
 Step 3: Port: 80
 Step 4: IP address type: IPv4
@@ -78,9 +77,9 @@ Register both EC2 instances to the Target Group.
 <pre>
 Go to EC2 → Load Balancers → Create Load Balancer → Application Load Balancer.
 
-Step1: Load balancer name: ALB
-Step2: Scheme: Internet-facing
-Step3: Load balancer IP address type: IPv4
+Step 1: Load balancer name: ALB
+Step 2: Scheme: Internet-facing
+Step 3: Load balancer IP address type: IPv4
 Step 4: VPC: default
 Step4 : Select at least two subnets (us-east-1a and us-east-1b).
 Step5: Security group: Allow HTTP (port 80).
@@ -89,6 +88,7 @@ Step7: Default action: Forward to your Target Group.
 Step 8: Select Target group
 </pre>
 ![](Image/Task03.png)
+
 ## 4. Verify Health Checks
 <pre>
 Step1: Go to the Target Group → Targets tab.
