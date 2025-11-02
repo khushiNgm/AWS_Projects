@@ -51,7 +51,7 @@ When demand increases, **Auto Scaling** launches new EC2 instances automatically
 ## ✅ 1. Create a Target Group
 <pre>
 Go to EC2 → Target Groups → Create Target Group
-⬜ Step 1: 
+⬜ STEP 1: 
   ▪ Target type: Instance
   ▪ Target group: Ec2-TG 
   ▪ Protocol: HTTP
@@ -65,7 +65,7 @@ Go to EC2 → Target Groups → Create Target Group
 
 ⬜ Advanced health check settings : default 
 
-⬜ Step 2 : Register targets
+⬜ STEP 2 : Register targets
   ▪ Available instances: 0 
   ▪ select: next 
 
@@ -121,7 +121,7 @@ Go to EC2 → Auto Scaling Groups → Create
   ii) use1-az2 (us-east-1b)
  ▪ Availability Zone distribution: Balanced best effort 
 
-⬜ Step 3: Integrate with other services
+⬜ STEP 3: Integrate with other services
 ▪ Integrate with Load Balancer:
 i) Select Load balancing options: Attach to an existing load balancer 
 ii) Select the load balancers to attach: Chose from your balancer target group 
@@ -129,7 +129,7 @@ iii) Existing load balancer target groups: Ec2-tg | HTTP
 iv) Select VPC Lattice service to attach: No VPC Lattice service 
 v) Additional health check types: Turn on Elastic Load Balancing health checks
 
-Step 4: Configure group size and scaling policies
+⬜ STEP 4: Configure group size and scaling policies
 i) Desired capacity: 3
 ii) Scaling
 ▪ Group size:
@@ -146,27 +146,19 @@ vi) Instance maintenance policy I
   i) Choose a replacement behavior depending on your availability requirements:No policy  
   ii) Additional capacity settings: Default 
 
-Step 5: Add notifications
+⬜ Step 5: Add notifications
  i) Send a notification to:
  ii) With these recipients:
  iii) Event types:
-
+</pre>
 
 ## ✅ 5. Verify Setup
 <pre>
 ▪ Wait until your targets show Healthy under the Target Group.
 ▪ Access the ALB DNS Name in your browser:
-<pre>
 http://your-load-balancer-name.us-east-1.elb.amazonaws.com/
 </pre>
-</pre>
 
-## ✅ 6. OutPut 
-<pre>
-Every refresh will show responses from different EC2 instances:
-Welcome to Auto Scaled Instance - ip-172-31-8-45
-Welcome to Auto Scaled Instance - ip-172-31-12-33
-</pre>
 
 ## 👩‍💻 Author
 Khushi Nigam
