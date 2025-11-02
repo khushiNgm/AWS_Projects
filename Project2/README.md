@@ -48,65 +48,125 @@ When demand increases, **Auto Scaling** launches new EC2 instances automatically
 
 ## 🪜 Step-by-Step Implementation
 
-## ✅ 2. Create a Target Group
-▪ Go to EC2 → Target Groups → Create Target Group
-▪ Choose:
-Target type: Instance
-Protocol: HTTP
-Port: 80
-▪ Health Check Path: /
+## ✅ 1. Create a Target Group
+<pre>
+Go to EC2 → Target Groups → Create Target Group
+⬜ Step 1: 
+  ▪ Target type: Instance
+  ▪ Target group: Ec2-TG 
+  ▪ Protocol: HTTP
+  ▪ Ip address type: IPv4 
+  ▪ VPC: default 
+  ▪ Protocol version: HTPP1 
+
+⬜ Health Check
+  ▪ Health check protocol: HTTP 
+  ▪ Health check Path: /index.html 
+
+⬜ Advanced health check settings : default 
+
+⬜ Step 2 : Register targets
+  ▪ Available instances: 0 
+  ▪ select: next 
+
 ▪ Register targets (EC2 instances will be automatically attached later by Auto Scaling).
-
-![](screenshots/target-group.png)
-
-## ✅ 3. Create an Application Load Balancer (ALB)
-<pre>
-▪ Go to Load Balancers → Create Load Balancer → Application Load Balancer
-▪ Choose:
-Scheme: Internet-facing
-IP type: IPv4
-Select at least two subnets (from different AZs)
-▪ Add a Listener:
-Protocol: HTTP
-Port: 80
-Default Action: Forward to Target Group
 </pre>
 
-![](screenshots/load-balancer.png)
-
-✅ 4. Create an Auto Scaling Group (ASG)
+## ✅ 2. Create an Application Load Balancer (ALB)
 <pre>
-▪ Go to EC2 → Auto Scaling Groups → Create
-▪ Choose:
-Launch Template: Template-For-Pro1
-VPC: same as the ALB
-Subnets: select multiple AZs (e.g., us-east-1a & us-east-1b)
+Go to Load Balancers → Create Load Balancer → Application Load Balancer
+⬜ Choose:
+  ▪ Load balancer name: ALB 
+  ▪ Scheme: Internet-facing
+  ▪ IP type: IPv4
+
+⬜ Network mapping 
+  ▪ VPC: default 
+  ▪ Availability Zones and subnets: select at least two subnets (from different AZs)
+  i)  us-east-1a (use1-az1)
+  ii) us-east-1b (use1-az2)
+
+⬜ Security groups 
+  ▪ Security groups: default 
+
+⬜ Listeners and routing
+  ▪ Protocol: HTTP 
+  ▪ Port: 80 
+  ▪ Routing action: forward to target group 
+  ▪ Target group: Ec2-tg 
+</pre>
+
+## ✅ 3. Create launch template
+<pre>
+⬜ Launch template name: Launch-Tem
+  ▪ Application and OS Images (Amazon Machine Image) 
+  ▪ Select AMI: Ubuntu 
+  ▪ Instance type: t2.micro 
+  ▪ Key pair(login): default  
+</pre>
+
+## ✅ 4. Create an Auto Scaling Group (ASG)
+<pre>
+Go to EC2 → Auto Scaling Groups → Create
+⬜ STEP 1: 
+ ▪ Auto Scaling group name: Auto-grp
+ ▪ Choose launch template: Launch-Tem 
+ ▪ Auto Scaling group name: Auto-grp
+ ▪ Launch Template: Template-For-Pro1
+
+⬜ STEP 2: Choose instance launch options
+ ▪  VPC: Default 
+ ▪ Availability Zones and subnets: 
+   i) use1-az1 (us-east-1a)
+  ii) use1-az2 (us-east-1b)
+ ▪ Availability Zone distribution: Balanced best effort 
+
+⬜ Step 3: Integrate with other services
 ▪ Integrate with Load Balancer:
-Attach existing Target Group (AWS-TG)
+i) Select Load balancing options: Attach to an existing load balancer 
+ii) Select the load balancers to attach: Chose from your balancer target group 
+iii) Existing load balancer target groups: Ec2-tg | HTTP
+iv) Select VPC Lattice service to attach: No VPC Lattice service 
+v) Additional health check types: Turn on Elastic Load Balancing health checks
+
+Step 4: Configure group size and scaling policies
+i) Desired capacity: 3
+ii) Scaling
 ▪ Group size:
-Desired: 2
-Minimum: 1
-Maximum: 4
- ▪ Health Check Type: EC2 + ELB
- ▪ Enable Notifications (Optional) via SNS.
-</pre>
-![](screenshots/auto-scaling.png)
+Desired: 3
+Minimum: 2
+Maximum: 12
+iii) Choose whether to use a target tracking policy: Target tracking scaling policy
+iv) Scaling policy name: Target Tracking Policy
+v) Metric type
+   Average CPU utilization 
+   Target value: 30 
+   Instance warmup: 300 secound 
+vi) Instance maintenance policy I
+  i) Choose a replacement behavior depending on your availability requirements:No policy  
+  ii) Additional capacity settings: Default 
 
-✅ 5. Verify Setup
+Step 5: Add notifications
+ i) Send a notification to:
+ ii) With these recipients:
+ iii) Event types:
 
+
+## ✅ 5. Verify Setup
+<pre>
 ▪ Wait until your targets show Healthy under the Target Group.
 ▪ Access the ALB DNS Name in your browser:
 <pre>
 http://your-load-balancer-name.us-east-1.elb.amazonaws.com/
 </pre>
+</pre>
 
-Every refresh will show responses from different EC2 instances:
+## ✅ 6. OutPut 
 <pre>
+Every refresh will show responses from different EC2 instances:
 Welcome to Auto Scaled Instance - ip-172-31-8-45
 Welcome to Auto Scaled Instance - ip-172-31-12-33
 </pre>
-![](screenshots/auto-scaling.png)
-
 
 ## 👩‍💻 Author
 Khushi Nigam

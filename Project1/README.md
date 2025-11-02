@@ -44,12 +44,13 @@ Below is the architecture diagram representing the project setup:
 Launch two EC2 instances using Ubuntu AMI.
 <pre>
 ******** Install and configure a simple web server: ********
-# !/bin/bash 
-sudo yum update -y
-sudo yum install httpd -y
-sudo systemctl start httpd
-sudo systemctl enable httpd
-echo "Welcome to EC2-Server-1">/var/www/html/index.html
+#!/bin/bash
+sudo apt update -y
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+echo "Welcome to EC2-Server Auto Scaling" | sudo tee /var/www/html/index.html
+
 </pre>
 
 (Repeat for the second instance and change the text to “EC2-Server-2”)
