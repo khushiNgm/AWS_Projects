@@ -7,9 +7,9 @@
 ## ✅ 4. Create an Auto Scaling Group (ASG)
 ![](Image/AUTO-SCALING2.png) 
 ![](Image/AUT.png)
-## ✅ 4. With template launch ec2 instance 
+## ✅ 4. Launch an EC2 instance with the help of a launch template.
 ![](Image/EC2-1.png)
-## ✅ 5. If i delete EC2 instance : 
+## ✅ 5. What happens if I delete an existing EC2 instance?
 ![](Image/EC2-2.png)
 
 ## 📝 Note:
