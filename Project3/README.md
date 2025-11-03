@@ -29,11 +29,10 @@ This project creates an automated billing-alerting pipeline using AWS CloudWatch
 
 ## ✅ 1. Enable Billing Alerts in AWS 
 <pre>
-  ▪ Go to AWS Management Console
-  ▪ Navigate to Billing Dashboard → Billing Preferences
-  ▪ Amazon Machine Image (AMI): Ubuntu Server (Free tier)  
-  ▪ Tick “Receive Billing Alerts”✅
-  ▪ Click Save Preferences
+ ▪ Sign in to the AWS Management Console. 
+ ▪ Go to the Billing Dashboard → Billing preferences. 
+ ▪ Under "Alert preferences", tick “Receive Billing Alerts”.✅
+ ▪ Click “Save preferences” to apply the changes.
 
 </pre>
 
