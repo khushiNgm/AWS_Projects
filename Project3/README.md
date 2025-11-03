@@ -33,7 +33,7 @@ Go to EC2 → Instance → Launch an instance
   ▪ Go to AWS Management Console
   ▪ Navigate to Billing Dashboard → Billing Preferences
   ▪ Amazon Machine Image (AMI): Ubuntu Server (Free tier)  
-  ▪ Tick ✅ “Receive Billing Alerts”
+  ▪ Tick “Receive Billing Alerts”✅
   ▪ Click Save Preferences
 
 </pre>
