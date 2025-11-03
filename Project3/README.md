@@ -8,8 +8,9 @@ This project creates an automated billing-alerting pipeline using AWS CloudWatch
 
 ## ⚙️ Technologies Used
 <pre>
-1️⃣ AWS CloudWatch (Billing Metrics & Alarms) 
-2️⃣ Amazon SNS (Topics & Subscriptions)
+1️⃣ Amazon EC2 (Elastic Compute Cloud)
+2️⃣ AWS CloudWatch (Billing Metrics & Alarms) 
+3️⃣ Amazon SNS (Topics & Subscriptions)
  
 </pre>
 
@@ -26,56 +27,76 @@ This project creates an automated billing-alerting pipeline using AWS CloudWatch
 
 ## 🪜 Step-by-Step Implementation
 
-## ✅ 1. Create a Target Group
+## ✅ 1. Enable Billing Alerts in AWS 
 <pre>
-Go to EC2 → Target Groups → Create Target Group
-⬜ STEP 1: 
-  ▪ Target type: Instance
-  ▪ Target group: Ec2-TG 
-  ▪ Protocol: HTTP
-  ▪ Ip address type: IPv4 
-  ▪ VPC: default 
-  ▪ Protocol version: HTPP1 
-
-▪ Register targets (EC2 instances will be automatically attached later by Auto Scaling).
-</pre>
-
-## ✅ 2. Create an Application Load Balancer (ALB)
-<pre>
-Go to Load Balancers → Create Load Balancer → Application Load Balancer
-⬜ Choose:
-  ▪ Load balancer name: ALB 
-  ▪ Scheme: Internet-facing
-  ▪ IP type: IPv4
+Go to EC2 → Instance → Launch an instance 
+  ▪ Go to AWS Management Console
+  ▪ Navigate to Billing Dashboard → Billing Preferences
+  ▪ Amazon Machine Image (AMI): Ubuntu Server (Free tier)  
+  ▪ Tick ✅ “Receive Billing Alerts”
+  ▪ Click Save Preferences
 
 </pre>
 
-## ✅ 3. Create launch template
+## ✅ 2. Create an SNS Topic
 <pre>
-⬜ Launch template name: Launch-Tem
-  ▪ Application and OS Images (Amazon Machine Image) 
-  ▪ Select AMI: Ubuntu 
-  ▪ Instance type: t2.micro 
-  ▪ Key pair(login): default  
+⬜ SNS (Simple Notification Service) is used to send alert notifications in a reliable and scalable manner.
+Go to SNS Console → Topics → Create Topic
+  ▪ Choose Standard 
+  ▪ Give a name: BillingAlertTopic
+  ▪ Click Create Topic
+
 </pre>
 
-## ✅ 4. Create an Auto Scaling Group (ASG)
+## ✅ 3. Subscribe to SNS Topic
+<pre>
+⬜ Now you need to subscribe your email ID so that you can receive the alert emails.
+  ▪ Under the topic → Click Create Subscription
+  ▪ Protocol: Email
+  ▪ Endpoint: Your Email Address
+  ▪ Click Create Subscription
+  ▪ Check your inbox 📧 → Confirm the subscription by clicking the link.
+</pre>
+
+## ✅ 4. Create a CloudWatch Alarm for Billing
 <pre>
 Go to EC2 → Auto Scaling Groups → Create
-⬜ STEP 1: 
- ▪ Auto Scaling group name: Auto-grp
- ▪ Choose launch template: Launch-Tem 
- ▪ Auto Scaling group name: Auto-grp
- ▪ Launch Template: Template-For-Pro1
-
-
-## ✅ 5. Verify Setup
-<pre>
-▪ Wait until your targets show Healthy under the Target Group.
-▪ Access the ALB DNS Name in your browser:
-http://your-load-balancer-name.us-east-1.elb.amazonaws.com/
+ ▪ Go to CloudWatch Console → Alarms → Create Alarm
+ ▪ Click Select Metric →
+   → choose Billing → Total Estimated Charge
+ ▪ Select the metric named
+   “EstimatedCharges” (Currency = USD or INR)
+ ▪ Click Select Metric
 </pre>
 
+## ✅ 5. Configure Alarm Conditions
+<pre>
+▪ Statistic: Maximum
+▪ Period: 6 hours (or 1 hour for faster updates)
+▪ Threshold type: Static
+▪ Condition:
+   Greater than 5 (if you want alert above $5)
+</pre>
+
+## ✅ 6. Add Notification
+<pre>
+▪ Send notification to an existing SNS topic → Select your topic BillingAlertTopic
+▪ Optionally, add another action if needed.
+</pre>
+
+## ✅ 7. Add Alarm Name & Description
+<pre>
+⬜ Example:
+  ▪ Name: Billing_Alert_Above_5USD
+  ▪ Description: Send alert when monthly AWS bill exceeds $5
+
+Click Next → Review everything → Click Create Alarm.
+</pre>
+
+## ✅ Step 8: Test the Setup
+<pre>
+You’ll receive an email notification whenever the billing cost crosses the set threshold.
+</pre>
 
 ## 👩‍💻 Author
 Khushi Nigam
