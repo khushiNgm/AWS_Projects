@@ -98,6 +98,6 @@ Click Next → Review everything → Click Create Alarm.
 You’ll receive an email notification whenever the billing cost crosses the set threshold.
 </pre>
 
-## 👩‍💻 Author
-Khushi Nigam
+# 👩‍💻 Author
+## Khushi Nigam
 AWS EC2 & Load Balancer Project | Cloud & DevOps Learner

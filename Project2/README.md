@@ -160,6 +160,6 @@ http://your-load-balancer-name.us-east-1.elb.amazonaws.com/
 </pre>
 
 
-## 👩‍💻 Author
-Khushi Nigam
+# 👩‍💻 Author
+## Khushi Nigam
 AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
