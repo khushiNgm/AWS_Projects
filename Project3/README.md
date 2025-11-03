@@ -36,38 +36,52 @@ This project creates an automated billing-alerting pipeline using AWS CloudWatch
 
 </pre>
 
-## ✅ 2. Create an SNS Topic
+## ✅ 2. Create an SNS Topic & Subscribe 
 <pre>
 ⬜ SNS (Simple Notification Service) is used to send alert notifications in a reliable and scalable manner.
 Go to SNS Console → Topics → Create Topic
-  ▪ Choose Standard 
-  ▪ Give a name: BillingAlertTopic
+  ▪ Type: Standard 
+  ▪ Name: BillingAlertTopic
   ▪ Click Create Topic
-
 </pre>
+</br>
 
-## ✅ 3. Subscribe to SNS Topic
 <pre>
+
 ⬜ Now you need to subscribe your email ID so that you can receive the alert emails.
-  ▪ Under the topic → Click Create Subscription
+Under the topic → Click Create Subscription
+  ▪ Topic ARN: default 
   ▪ Protocol: Email
   ▪ Endpoint: Your Email Address
   ▪ Click Create Subscription
-  ▪ Check your inbox 📧 → Confirm the subscription by clicking the link.
+✅ Check your inbox 📧 → Confirm the subscription by clicking the link.
 </pre>
 
-## ✅ 4. Create a CloudWatch Alarm for Billing
+## ✅ 3. Create a CloudWatch Alarm for Billing
 <pre>
-Go to EC2 → Auto Scaling Groups → Create
- ▪ Go to CloudWatch Console → Alarms → Create Alarm
- ▪ Click Select Metric →
+⬜ Go to CloudWatch Console → Alarms → Create Alarm
+
+STEP 1: Specify metric and conditions
+▪ Namespace: AWS/Billing
+▪ Metric name: EstimatedCharges
+▪ Currency: USD 
+▪ Statistic: Maximum
+▪ Period: 6 hours
+
+STEP 2: Step 2 Configure actions
+▪ Alarm state trigger: In alarm 
+▪ Send a notification to the following SNS topic: Select an existing SNS topic
+
+STEP 3:  
+▪ Alarm name: AWS Billing Alert
+▪ Click Select Metric →
    → choose Billing → Total Estimated Charge
- ▪ Select the metric named
+▪ Select the metric named
    “EstimatedCharges” (Currency = USD or INR)
- ▪ Click Select Metric
+▪ Click Select Metric
 </pre>
 
-## ✅ 5. Configure Alarm Conditions
+## ✅ 4. Configure Alarm Conditions
 <pre>
 ▪ Statistic: Maximum
 ▪ Period: 6 hours (or 1 hour for faster updates)
@@ -76,13 +90,13 @@ Go to EC2 → Auto Scaling Groups → Create
    Greater than 5 (if you want alert above $5)
 </pre>
 
-## ✅ 6. Add Notification
+## ✅ 5. Add Notification
 <pre>
 ▪ Send notification to an existing SNS topic → Select your topic BillingAlertTopic
 ▪ Optionally, add another action if needed.
 </pre>
 
-## ✅ 7. Add Alarm Name & Description
+## ✅ 6. Add Alarm Name & Description
 <pre>
 ⬜ Example:
   ▪ Name: Billing_Alert_Above_5USD
@@ -91,10 +105,10 @@ Go to EC2 → Auto Scaling Groups → Create
 Click Next → Review everything → Click Create Alarm.
 </pre>
 
-## ✅ Step 8: Test the Setup
-<pre>
+## ✅ Step 7: Test the Setup
+<p>
 You’ll receive an email notification whenever the billing cost crosses the set threshold.
-</pre>
+</p>
 
 # 👩‍💻 Author
 ## Khushi Nigam
