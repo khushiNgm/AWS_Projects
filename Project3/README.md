@@ -4,7 +4,7 @@
 
 This project creates an automated billing-alerting pipeline using AWS CloudWatch and Amazon SNS. When AWS estimated charges cross a configured threshold, CloudWatch emits an alarm which forwards a notification to an SNS topic. Subscribers (email, Slack webhook, Lambda, etc.) receive the alert so ops or finance teams can act quickly to control costs.
 
-<img src="Image/architecture.png" alt="AWS Architecture" width="550" height="500">
+<img src="Image/AWSCLOUDWATCH.png" alt="AWS Architecture" width="550" height="500">
 
 ## ⚙️ Technologies Used
 <pre>
