@@ -1,4 +1,4 @@
-# 🚀 SOlution : Automated EC2 Instance Scheduler using AWS Lambda & EventBridge (For Cost Optimization)
+# 🚀 Solution : Automated EC2 Instance Scheduler using AWS Lambda & EventBridge (For Cost Optimization)
 
 ## 🪜 Step-by-Step Implementation
 
