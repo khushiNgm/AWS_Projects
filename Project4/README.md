@@ -51,7 +51,24 @@ It helps in reducing AWS costs by automatically stopping instances when not in u
 
 ## ✅ 2. Create IAM Role and Attach Permissions
 <pre> 
-⬜ Go to IAM Console → Roles → Create role. 
+Go to IAM Console → Roles → Create role. 
+⬜ STEP 1: 
+**** Specify permissions ****
+▪ Policy editor: write JSON code 
+
+**** Review and create **** 
+▪ Policy name:530pm-ec2-policy
+
+⬜ STEP 2: Create a role
+**** Select trusted entity ****
+▪ Trusted entity type: AWS service
+▪ Use case: Lambda
+
+**** Add permissions ****
+▪ Added: 530pm-ec2-policy
+
+**** Name, review, and create ****
+
 ▪ Choose trusted entity type: AWS Service → Lambda. 
 ▪ Attach policy: AmazonEC2FullAccess (for testing) or custom policy to Start/Stop instances. 
 ▪ Name the role: LambdaEC2Role 
@@ -62,20 +79,36 @@ It helps in reducing AWS costs by automatically stopping instances when not in u
 ## ✅ 3. Create a Lambda function for stop EC2 instace 
 <pre>
 ⬜ Go to Lambda Console → Create function → Author from scratch. 
-   ▪ Name: EC2StopStartFunction 
-   ▪ Runtime: Python 3.x (or Node.js) 
-   ▪ Execution role: Choose existing role → LambdaEC2Role 
-   ▪ In the Code section, paste your EC2 stop/start code. 
+   ▪ Function name: Stop-Function 
+   ▪ Runtime: Python 3.13
+   ▪ Architecture: x86_64
+    
+ Change default execution role  
+   ▪ Execution role: Use an existing role
+   ▪ Existing role: 530pm-lambda-role
 </pre>
 
 ## ✅ 4. Create EventBridge Rule (Scheduler Trigger)
 <pre> 
 ⬜ Go to Amazon EventBridge → Rules → Create rule. 
-   ▪ Name: EC2StopRule 
-   ▪ Rule type: Schedule. 
-   ▪ Define pattern: Fixed rate or Cron expression (e.g., cron(30 17 * * ? *) for 5:30 PM daily). 
-   ▪ Target: Lambda function → select EC2StopStartFunction. 
-   ▪ Create rule. 
+
+**** Specify schedule detail ****
+Name: Stop-Rule 
+Event bus: default 
+Rule type: Schedule
+Schedule type: Cron-based schedule
+Cron expression: 52 13 * ? * 
+
+**** Select target(s) ****
+Target API: Templated targets
+Select: AWS Lambda (Invoke) 
+Lambda function: StopEC2Instance 
+Payload:
+{
+  "instances": ["i-0241ae33d2aef69c5"],
+  "action": "stop"
+}
+
 📘 This rule automatically invokes your Lambda function on the defined schedule.
 </pre>
 

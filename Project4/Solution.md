@@ -3,16 +3,23 @@
 ## 🪜 Step-by-Step Implementation
 
 ## ✅ 1. Launch EC2 instance 
-![](Images/CloudWatch.png)
+![](Images/EC2Launch.png)
 
 ## ✅ 2. Create IAM Role and Attach Permissions
-![](Images/CloudWatch.png)
+## Create Policies
+![](Images/IAMP.png)
+
+## Create Role
+![](Images/IAMROLE.png)
 
 ## ✅ 3. Create a Lambda function for stop EC2 instace 
-![](Images/CloudWatch.png)
+![](Images/LambdaFun.png)
+![](Images/LamF.png)
 
 ## ✅ 4. Create EventBridge Rule (Scheduler Trigger)
-![](Images/CloudWatch.png)
+![](Images/AWSEVNEB-1.png)
 
 ## ✅ 5.Verify the Automation
-![](Images/CloudWatch.png)
+![](Images/STOPEC2.png)
+
+As you can see, the EC2 instance was successfully stopped by the Lambda function, confirming that the automation works as expected.
