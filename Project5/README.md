@@ -1,4 +1,4 @@
-# 🚀 Project 4: Automated EC2 Instance Scheduler using AWS Lambda & EventBridge (For Cost Optimization)
+# 🚀 Project 5: EC2 System Logs Analyzer (using Lambda + CloudWatch Logs)
 
 ## 🧠 Project Overview
 
@@ -121,5 +121,4 @@ Payload:
 
 # 👩‍💻 Author
 ## Khushi Nigam
-
 AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
