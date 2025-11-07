@@ -25,13 +25,18 @@
 ![](Images/CES-6.png)
 
 ## ✅ STEP 3: Test Blue Environment
-![](Images/AWSEVNEB-1.png)
+![](Images/JAE.png)
+![](Images/JAEIMG.png)
 
 ## ✅ STEP 4: Create a Python (Green) Environment for aaplication 
 Repeate as blue deployment 
 
 ## ✅ STEP 5: Test Green Environment
 ![](Images/PAEIMG.png)
+
+## ✅ STEP 6: You can see both enviroment variable is created 
+![](Images/ENVT-2.png)
+![](Images/ENVIROMENT-2.png)
 
 ## ✅ STEP 6: Perform Blue-Green Deployment (CNAME Swap)
 ![](Images/SWAPENV.png)
