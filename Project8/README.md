@@ -43,15 +43,15 @@ Implemented a Blue-Green Deployment architecture on AWS using EC2 instances, Tar
         |   EC2 Instance 2  |                 |   EC2 Instance 4 |
         | (App Version v1)  |                 | (App Version v2) |
         +-------------------+                 +------------------+
-                |                                     |
-                |<------ Zero Downtime Switch ------->|
-                |       100% → 0%                     |
-                             | '
-                             v                   
-                       traffic shift to 
-                             |
-                             v       
-                         0% → 100%  
+                |                                         |
+                |<---------- Zero Downtime Switch ------->|
+                |             100% → 0%                   |
+                                 | '
+                                 v                   
+                           traffic shift to 
+                                 |
+                                 v       
+                             0% → 100%  
 
 🪜 Step-by-Step Implementation
 
