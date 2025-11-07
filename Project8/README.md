@@ -7,7 +7,7 @@ Designed and implemented a Blue-Green Deployment architecture on AWS using EC2, 
 
 Implemented a Blue-Green Deployment architecture on AWS using EC2 instances, Target Groups, and an Application Load Balancer to achieve zero-downtime application updates. 🚀
 
-<img src="Images/EC2-BlueGreen.png" alt="AWS Architecture" width="550" height="500">
+<img src="Images/Pro8.png" alt="AWS Architecture" width="550" height="500">
 
 ## ⚙️ Technologies Used
 <pre>
