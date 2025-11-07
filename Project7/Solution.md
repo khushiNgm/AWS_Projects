@@ -40,7 +40,7 @@ Repeate as blue deployment
 
 ## ✅ STEP 6: Perform Blue-Green Deployment (CNAME Swap)
 ![](Images/SWAPENV.png)
-![](Images/SWAPENV2.png)
+![](Images/SEAPENV2.png)
 
 ##  ✅ Successfylly, done. If you refresh your page everythigng will be convert into python code✅ 
 
