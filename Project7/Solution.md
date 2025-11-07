@@ -10,7 +10,7 @@
 ![](Images/CES-1.png)
 
 ⬜ 2: Configure service access
-![](Images/CES1.png)
+![](Images/CES2.png)
 
 ⬜ 3: Set up networking, database, and tags (Select default value)
 ![](Images/CES3.png)
