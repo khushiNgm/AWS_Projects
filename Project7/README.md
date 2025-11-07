@@ -99,7 +99,7 @@ Blue-Green Deployment = Two environments + One URL swap = Zero downtime + Safe r
    ▪ EC2 key pair: LINUX_MACHINE
    </pre>
 
-⬜ 3: Set up networking, database, and tags (Select default value)
+⬜ 3: Set up networking, database, and tags (Select default values)
 
 ⬜ 4: Configure instance traffic and scaling
   <pre>
@@ -123,7 +123,7 @@ Blue-Green Deployment = Two environments + One URL swap = Zero downtime + Safe r
    ▪ Source: Default 
    </pre>   
 
-⬜ 6: Review everything and just click on create 
+⬜ 6: Review all configurations and click on “Create”.
 
 ✅ STEP 3: Create a Python (Green) Environment for aaplication 
    Go back to Elastic Beanstalk → Click “Create Environment” under the same application (JavaBasedApp). 
@@ -170,7 +170,8 @@ Blue-Green Deployment = Two environments + One URL swap = Zero downtime + Safe r
    ▪ Source: Default 
    </pre>   
 
-⬜ 5: Review everything and just click on create 
+⬜ 6: Review everything and just click on create 
+<pre>
    ▪ Service Role & Instance Profile: same as Blue environment.
    💡 This environment will act as the GREEN environment (staging for new version). 
    </pre>

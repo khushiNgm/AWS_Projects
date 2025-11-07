@@ -22,20 +22,21 @@
 ## ⬜ 5: Configure updates, monitoring, and logging
 ![](Images/CES5.png)
 
-## ⬜ 6: Review everything and just click on create 
+## ⬜ 6: Review Everything and Click on Create
 ![](Images/CES-6.png)
 
-## ✅ STEP 3: Test Blue Environment
+## ✅ STEP 3: Test the Blue Environment
 ![](Images/JAE.png)
 ![](Images/JAEIMG.png)
 
 ## ✅ STEP 4: Create a Python (Green) Environment for aaplication 
-Repeate as blue deployment 
+Repeat the same steps as in the Blue environment deployment.
 
-## ✅ STEP 5: Test Green Environment
+## ✅ STEP 5: Test the Green Environment
 ![](Images/PAEIMG.png)
 
-## ✅ STEP 6: You can see both enviroment variable is created 
+## ✅ STEP 6: Verify Both Environments
+You can now see that both environments have been created successfully.
 ![](Images/ENVT-2.png)
 ![](Images/ENVIROMENT-2.png)
 
@@ -43,5 +44,6 @@ Repeate as blue deployment
 ![](Images/SWAPENV.png)
 ![](Images/SEAPENV2.png)
 
-##  ✅ Successfylly, done. If you refresh your page everythigng will be convert into python code
-
+## 🎉 Result:
+Successfully completed the environment migration!
+After performing the CNAME swap, if you refresh your page, the application will now run using Python (Flask) instead of Java (Tomcat) — with zero downtime.
