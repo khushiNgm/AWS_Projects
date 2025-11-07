@@ -2,24 +2,40 @@
 
 ## 🪜 Step-by-Step Implementation
 
-## ✅ 1. Launch EC2 instance 
-![](Images/EC2Launch.png)
+## ✅ 1: Create an Elastic Beanstalk Application
+![](Images/CreatEBS.png)
 
-## ✅ 2. Create IAM Role and Attach Permissions
-## Create Policies
-![](Images/IAMP.png)
+## ✅ 2: Create a Java (Blue) Environment
+⬜ 1: Configure environment
+![](Images/CES-1.png)
 
-## Create Role
-![](Images/IAMROLE.png)
+⬜ 2: Configure service access
+![](Images/CES1.png)
 
-## ✅ 3. Create a Lambda function for stop EC2 instace 
-![](Images/LambdaFun.png)
-![](Images/LamF.png)
+⬜ 3: Set up networking, database, and tags (Select default value)
+![](Images/CES3.png)
 
-## ✅ 4. Create EventBridge Rule (Scheduler Trigger)
+⬜ 4: Configure instance traffic and scaling
+![](Images/CES4.png)
+
+⬜ 5: Configure updates, monitoring, and logging
+![](Images/CES5.png)
+
+⬜ 6: Review everything and just click on create 
+![](Images/CES-6.png)
+
+## ✅ STEP 3: Test Blue Environment
 ![](Images/AWSEVNEB-1.png)
 
-## ✅ 5.Verify the Automation
-![](Images/STOPEC2.png)
+## ✅ STEP 4: Create a Python (Green) Environment for aaplication 
+Repeate as blue deployment 
 
-As you can see, the EC2 instance was successfully stopped by the Lambda function, confirming that the automation works as expected.
+## ✅ STEP 5: Test Green Environment
+![](Images/PAEIMG.png)
+
+## ✅ STEP 6: Perform Blue-Green Deployment (CNAME Swap)
+![](Images/SWAPENV.png)
+![](Images/SWAPENV2.png)
+
+##  ✅ Successfylly, done. If you refresh your page everythigng will be convert into python code✅ 
+

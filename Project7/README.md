@@ -68,110 +68,139 @@ Blue-Green Deployment = Two environments + One URL swap = Zero downtime + Safe r
                                     │    DNS (domain name)   │
                                     └────────────────────────┘
 
-# 🪜 Step-by-Step Implementation
+🪜 Step-by-Step Implementation
 
-## ✅ 1. Launch EC2 instance 
+✅ STEP 1: Create an Elastic Beanstalk Application
 <pre> 
-⬜ Sign in to the AWS Management Console. Navigate to EC2 → Launch Instance. 
-▪ Choose Amazon Linux 2 AMI (Free tier eligible). 
-▪ Select t2.micro instance type. 
-▪ Configure instance details → keep defaults. 
-▪ Add key pair → create/download one if not available. 
-▪ Launch the instance. 
-</pre>
+⬜ Sign in to the AWS Management Console → Navigate to Elastic Beanstalk. 
+   ▪ Click on "Create Application". 
+   ▪ Application name: First-EBS-Application
+   ▪ Description: Environment migration demo from Java (Tomcat) to Python (Flask) 
+   </pre>
 
-## ✅ 2. Create IAM Role and Attach Permissions
-<pre> 
-Go to IAM Console → Roles → Create role. 
-⬜ STEP 1: Select trusted entity 
-▪ Trusted entity type: AWS Server 
-▪ Use case: EC2
+✅ STEP 2: Create a Java (Blue) Environment
+  <pre> 
+ Choose recent created application then "Create a new environment". 
+⬜ 1: Configure environment
+   ▪ Environment tier: Web Server Environment 
+   ▪ Application name: by default selected 
+   ▪ Environment name: EBS-Java-Application-env 
+   ▪ Domain: leave blank  
+   ▪ Platform: Tomcat  
+   ▪ Application code: Sample application 
+   ▪ Presets: Sample application 
+   💡 This environment acts as the BLUE environment (current production). 
+   </pre>
+ 
+⬜ 2: Configure service access
+  <pre>
+   ▪ Service role: aws-elasticbeanstalk-service-role (alreday created)  
+   ▪ EC2 instance profile: select through dropdown 
+   ▪ EC2 key pair: LINUX_MACHINE
+   </pre>
 
-⬜ STEP 2: Add permissions 
-▪ Policy name: CloudWatchFullAccess
+⬜ 3: Set up networking, database, and tags (Select default value)
 
-
-⬜ STEP 3: Name, review, and create 
-
-▪ Role name: CloudWatch-logs
-▪ Trust policy: default
-</pre>
-
-## ✅ 3.Attach created role to EC2 instace 
-<pre>
-⬜ Go EC2 > Instance 
-   ▪ Go to action > Security > Modify IAM role 
-   ▪ IAM role: CloudWatch-logs  
-</pre>
-
-## ✅ 4.Login to the EC2 instace with terminal and .pem file 
-<pre>
-⬜ Write a cammands in terminal  
-   ▪ sudo -s 
-   ▪ sudo yum update -y
-   ▪ sudo yum install -y amazon-cloudwatch-agent 
-   ▪ sudo find /opt/aws/amazon-cloudwatch-agent/ -name "*.json"
-   ▪ sudo cd /opt/aws/amazon-cloudwatch-agent/etc/
-   ▪ ls
-   then i got 
-   ▪ amazon-cloudwatch-agent.json
-   ▪ log-config.json
-   ▪ env-config.jsonsudo 
-   ▪ cat amazon-cloudwatch-agent.json
-   ▪ sudo less amazon-cloudwatch-agent.json
-
-
-
-
-
-   ▪ sudo -s 
-   ▪ sudo yum update -y
-
-</pre>
-
-## ✅ 3. Create a Lambda function for stop EC2 instace 
-<pre>
-⬜ Go to Lambda Console → Create function → Author from scratch. 
-   ▪ Function name: Stop-Function 
-   ▪ Runtime: Python 3.13
+⬜ 4: Configure instance traffic and scaling
+  <pre>
+   ▪ Root volume type: default   
+   ▪ Monitoring interval: 5
+   ▪ EC2 security groups: select already selected security group 
+   ▪ Environment type: Single instance 
+   ▪ Fleet composition: On-Demand instance 
    ▪ Architecture: x86_64
-    
- Change default execution role  
-   ▪ Execution role: Use an existing role
-   ▪ Existing role: 530pm-lambda-role
-</pre>
+   ▪ Instance types: t2.micro 
+   ▪ AMI ID: default value 
+   </pre>
 
-## ✅ 4. Create EventBridge Rule (Scheduler Trigger)
+⬜ 5: Configure updates, monitoring, and logging
+  <pre>
+   ▪ System: Basic    
+   ▪ Managed updates: uncheckd
+   ▪ Email: Enter you email 
+   ▪ Rolling updates and deployments: Default   
+   ▪ Platform software: default   
+   ▪ Source: Default 
+   </pre>   
+
+⬜ 6: Review everything and just click on create 
+
+✅ STEP 3: Create a Python (Green) Environment for aaplication 
+   Go back to Elastic Beanstalk → Click “Create Environment” under the same application (JavaBasedApp). 
+<pre>   
+⬜ 1: Configure environment
+   ▪ Environment tier: Web Server Environment 
+   ▪ Application name: by default selected 
+   ▪ Environment name: EBS-Python-Application-env 
+   ▪ Domain: leave blank  
+   ▪ Platform: Flask  
+   ▪ Application code: Sample application 
+   ▪ Presets: Sample application 
+   💡 This environment acts as the BLUE environment (current production). 
+   </pre>
+ 
+⬜ 2: Configure service access
+  <pre>
+   ▪ Service role: aws-elasticbeanstalk-service-role (alreday created)  
+   ▪ EC2 instance profile: select through dropdown 
+   ▪ EC2 key pair: LINUX_MACHINE
+   </pre>
+
+⬜ 3: Set up networking, database, and tags (Select default value)
+
+⬜ 4: Configure instance traffic and scaling
+  <pre>
+   ▪ Root volume type: default   
+   ▪ Monitoring interval: 5
+   ▪ EC2 security groups: select already selected security group 
+   ▪ Environment type: Single instance 
+   ▪ Fleet composition: On-Demand instance 
+   ▪ Architecture: x86_64
+   ▪ Instance types: t2.micro 
+   ▪ AMI ID: default value 
+   </pre>
+
+⬜ 5: Configure updates, monitoring, and logging
+  <pre>
+   ▪ System: Basic    
+   ▪ Managed updates: uncheckd
+   ▪ Email: Enter you email 
+   ▪ Rolling updates and deployments: Default   
+   ▪ Platform software: default   
+   ▪ Source: Default 
+   </pre>   
+
+⬜ 5: Review everything and just click on create 
+   ▪ Service Role & Instance Profile: same as Blue environment.
+   💡 This environment will act as the GREEN environment (staging for new version). 
+   </pre>
+
+## ✅ STEP 4: Test Green Environment
 <pre> 
-⬜ Go to Amazon EventBridge → Rules → Create rule. 
+⬜ Once deployment completes and shows “✅ Healthy”. 
+   ▪ Open the environment URL (e.g., JavaBasedApp-green.us-east-1.elasticbeanstalk.com) 
+   ▪ Verify Flask app loads successfully. 
+   ▪ Test all routes and ensure DB (if any) connectivity is correct. 
+   ▪ Compare environment settings between BLUE & GREEN. 
+   </pre>
 
-**** Specify schedule detail ****
-Name: Stop-Rule 
-Event bus: default 
-Rule type: Schedule
-Schedule type: Cron-based schedule
-Cron expression: 52 13 * ? * 
-
-**** Select target(s) ****
-Target API: Templated targets
-Select: AWS Lambda (Invoke) 
-Lambda function: StopEC2Instance 
-Payload:
-{
-  "instances": ["i-0241ae33d2aef69c5"],
-  "action": "stop"
-}
-
-📘 This rule automatically invokes your Lambda function on the defined schedule.
-</pre>
-
-## ✅ 5.Verify the Automation
+## ✅ STEP 5: Perform Blue-Green Deployment (CNAME Swap)
 <pre> 
-⬜ Check Lambda logs in CloudWatch → verify it ran successfully. 
-▪ Confirm EC2 instance state → it should stop automatically. 
-▪ Modify Lambda code to start the instance if needed (using ec2.start_instances). 
+⬜ Go to Elastic Beanstalk Console → Environments. 
+   ▪ Select “Actions” → “Swap environment URLs”. 
+   ▪ Choose: Source environment: JavaBasedApp-blue Destination environment: EBS-Python-Application-env (e-pz5hfcqfez)
+   ▪ Confirm Swap. 
+💡 This swaps the public URLs, directing production traffic to the GREEN environment (Python) with zero downtime. 
 </pre>
+
+✅ 7. Clean Up Resources
+<pre> 
+⬜ After successful verification: 
+▪ Terminate the BLUE environment (JavaBasedApp-blue) to save cost. 
+▪ Retain S3 buckets and logs if needed. 
+▪ Verify only the active GREEN (Python) environment is running.
+ </pre>
 
 # 👩‍💻 Author
 ## Khushi Nigam
-AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
+AWS Elastic Beanstalk Environment Migration Project (Java → Python) | Blue-Green Deployment | Cloud & DevOps Learner
