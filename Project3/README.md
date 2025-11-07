@@ -113,4 +113,4 @@ You’ll receive an email notification whenever the billing cost crosses the set
 # 👩‍💻 Author
 ## Khushi Nigam
 
-AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
+Billing alerts with CloudWatch & SNS  Project | Cloud & DevOps Learner

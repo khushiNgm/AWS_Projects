@@ -162,4 +162,4 @@ http://your-load-balancer-name.us-east-1.elb.amazonaws.com/
 
 # 👩‍💻 Author
 ## Khushi Nigam
-AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
+Auto Scaling in AWS EC2 using Launch Templates with Load Balancer Integration Project | Cloud & DevOps Learner

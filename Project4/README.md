@@ -122,4 +122,4 @@ Payload:
 # 👩‍💻 Author
 ## Khushi Nigam
 
-AWS EC2 & Load Balancer Project | Cloud & DevOps Learner
+Automated EC2 Instance Scheduler using AWS Lambda & EventBridge Project | Cloud & DevOps Learner

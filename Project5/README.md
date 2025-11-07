@@ -52,28 +52,50 @@ It helps in reducing AWS costs by automatically stopping instances when not in u
 ## ✅ 2. Create IAM Role and Attach Permissions
 <pre> 
 Go to IAM Console → Roles → Create role. 
-⬜ STEP 1: 
-**** Specify permissions ****
-▪ Policy editor: write JSON code 
+⬜ STEP 1: Select trusted entity 
+▪ Trusted entity type: AWS Server 
+▪ Use case: EC2
 
-**** Review and create **** 
-▪ Policy name:530pm-ec2-policy
+⬜ STEP 2: Add permissions 
+▪ Policy name: CloudWatchFullAccess
 
-⬜ STEP 2: Create a role
-**** Select trusted entity ****
-▪ Trusted entity type: AWS service
-▪ Use case: Lambda
 
-**** Add permissions ****
-▪ Added: 530pm-ec2-policy
+⬜ STEP 3: Name, review, and create 
 
-**** Name, review, and create ****
+▪ Role name: CloudWatch-logs
+▪ Trust policy: default
+</pre>
 
-▪ Choose trusted entity type: AWS Service → Lambda. 
-▪ Attach policy: AmazonEC2FullAccess (for testing) or custom policy to Start/Stop instances. 
-▪ Name the role: LambdaEC2Role 
-▪ Create the role.
-📘 This role allows Lambda to perform EC2 start/stop actions.
+## ✅ 3.Attach created role to EC2 instace 
+<pre>
+⬜ Go EC2 > Instance 
+   ▪ Go to action > Security > Modify IAM role 
+   ▪ IAM role: CloudWatch-logs  
+</pre>
+
+## ✅ 4.Login to the EC2 instace with terminal and .pem file 
+<pre>
+⬜ Write a cammands in terminal  
+   ▪ sudo -s 
+   ▪ sudo yum update -y
+   ▪ sudo yum install -y amazon-cloudwatch-agent 
+   ▪ sudo find /opt/aws/amazon-cloudwatch-agent/ -name "*.json"
+   ▪ sudo cd /opt/aws/amazon-cloudwatch-agent/etc/
+   ▪ ls
+   then i got 
+   ▪ amazon-cloudwatch-agent.json
+   ▪ log-config.json
+   ▪ env-config.jsonsudo 
+   ▪ cat amazon-cloudwatch-agent.json
+   ▪ sudo less amazon-cloudwatch-agent.json
+
+
+
+
+
+   ▪ sudo -s 
+   ▪ sudo yum update -y
+
 </pre>
 
 ## ✅ 3. Create a Lambda function for stop EC2 instace 
