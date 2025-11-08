@@ -143,6 +143,7 @@ Implemented a Blue-Green Deployment architecture on AWS using EC2 instances, Tar
    ▪ Change traffic distribution: - Blue-TG: 100% → 0% - Green-TG: 0% → 100% 
    ▪ Save the configuration. 
 💡 All production traffic now flows to Green environment — zero downtime! 
+🎥 [Watch: How to Switch Traffic (Blue → Green)](Images/Vedio.mp4)
 </pre>
 
 ## 🧠 Result
