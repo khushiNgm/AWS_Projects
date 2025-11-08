@@ -13,9 +13,15 @@
 ## ✅ STEP 2: Create Target Group for Blue Environment
 - BlueTargetGroup
 ---
-![](Images/TG-1.png)  
-![](Images/TG-2.png)  
+⬜ Create Target Group.
+![](Images/TG-1.png) 
+
+⬜ Register targets
+![](Images/TG-2.png) 
+
+⬜ Review and create 
 ![](Images/TG-3.png)  
+
 ![](Images/Tagetsuccefully.png)
 
 ---
