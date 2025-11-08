@@ -13,14 +13,14 @@
 ## ✅ STEP 2: Create Target Group for Blue Environment
 - BlueTargetGroup
 ---
-⬜ Create Target Group.
+⬜ Create Target Group.</br>
 ![](Images/TG-1.png) 
 
-⬜ Register targets
+⬜ Register targets</br>
 ![](Images/TG-2.png) 
 
-⬜ Review and create 
-![](Images/TG-3.png)  
+⬜ Review and create</br> 
+![](Images/TG-3.png)  </br>
 
 ![](Images/Tagetsuccefully.png)
 
