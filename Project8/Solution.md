@@ -11,6 +11,8 @@
 ---
 
 ## ✅ STEP 2: Create Target Group for Blue Environment
+- BlueTargetGroup
+---
 ![](Images/TG-1.png)  
 ![](Images/TG-2.png)  
 ![](Images/TG-3.png)  
@@ -27,6 +29,9 @@ Repeat the same process as in the Blue environment:
 
 ## ✅ STEP 4: Create Target Group for Green Environment
 Repeat the same process as for the Blue Target Group.  
+- BlueTargetGroup
+- GreenTargetGroup
+----
 ![](Images/BGTagrtGp.png)
 
 ---
@@ -38,7 +43,6 @@ Repeat the same process as for the Blue Target Group.
 ---
 
 ## ✅ STEP 6: Switch Traffic (Blue → Green)
-![](Images/LBtraffic.png)
 
 🎥 [Watch: How to Switch Traffic (Blue → Green)](Images/Vedio.mp4)
 
