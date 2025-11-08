@@ -37,12 +37,16 @@ Repeat the same process as for the Blue Target Group.
 ---
 
 ## ✅ STEP 5: Create an Application Load Balancer (ALB)
-![](Images/ALBCreate.png)  
+- BlueGreenALB
+---
+![](Images/ALBCreate.png)
+
+## ✅ STEP 6: Access the website with the help of ALB. 
 ![](Images/LBDAPP.png)
 
 ---
 
-## ✅ STEP 6: Switch Traffic (Blue → Green)
+## ✅ STEP 7: Switch Traffic (Blue → Green)
 
 🎥 [Watch: How to Switch Traffic (Blue → Green)](Images/Vedio.mp4)
 
