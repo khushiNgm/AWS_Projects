@@ -90,7 +90,7 @@ This project demonstrates how to configure Amazon EFS (Elastic File System) and 
 You will now see all the files that were created in the first EC2 instance.
 </pre>
 
-## ✅ 5.Now any changes made on one EC2 instance will automatically appear on the other EC2 instance.🎉
+## ✅ Now any changes made on one EC2 instance will automatically appear on the other EC2 instance.🎉
 
 # 👩‍💻 Author
 ## Khushi Nigam
