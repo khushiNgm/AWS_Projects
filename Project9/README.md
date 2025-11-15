@@ -41,85 +41,57 @@ This project demonstrates how to configure Amazon EFS (Elastic File System) and 
 
 ## ✅ 1.Create an Amazon EFS file system
 <pre>
- ▪ AWS Console → Services → EFS → Create file system. 
- ▪ Select the same VPC where your EC2 instances will run. 
- ▪ Keep default options for performance/throughput unless you need custom settings.
- ▪ Note the File system ID (e.g., fs-0123456789abcdef0)
+▪ Go to AWS Console → Services → EFS → Create file system.
+▪ Name it: FirstEFSfile
+▪ Select the same VPC where your EC2 instances will run.
+▪ Keep the default performance/throughput settings unless you need custom configurations.
+▪ Note the File System ID (e.g., fs-0123456789abcdef0).
 
 </pre>
 
 ## ✅ 2. Launch two EC2 instances (EC2-1 and EC2-2)
 <pre>
-  ▪ AWS Console → EC2 → Launch instances.
-  ▪ Choose Amazon Linux 2023 or Ubuntu LTS.
-  ▪ Place both instances in the same VPC (can be different subnets/AZs).
-  ▪ Attach a key pair for SSH access.
+ ▪ AWS Console → EC2 → Launch instances.
+▪ Name the instances: FirstEC2Instance and SecEC2Instance.
+▪ Choose Amazon Linux 2023 or Ubuntu LTS.
+▪ Place both instances in the same VPC (they can be in different subnets/AZs).
+▪ Attach a key pair for SSH access.
 </pre>
-
 ## ✅ 3. Create / configure Security Groups
 <pre>
-▪ Create a security group for EFS (or reuse): allow Inbound TCP 2049 (NFS) from the EC2 security group.
-▪ EC2 security group should allow SSH (port 22) from your IP and allow inbound from the other EC2 if needed.
-▪ Ensure outbound rules allow traffic to the EFS mount targets.
-
+▪ Create a security group for EFS (or reuse an existing one): allow inbound TCP 2049 (NFS) from the EC2 security group.
+▪ EC2 security group should allow SSH (port 22) from your IP and allow inbound traffic from the other EC2 instance if needed.
+▪ Ensure outbound rules allow traffic to reach the EFS mount targets.
 </pre>
 
 ## ✅4. Install EFS utilities on each EC2
 <pre>
-▪ Amazon Linux / RHEL:
-sudo yum update -y
-sudo yum install -y amazon-efs-utils
+⬜ First EC2 Instance
+▪ Login to the first EC2 instance through SSH.
+▪ Run: sudo -s
+▪ Install EFS utilities: sudo yum install -y amazon-efs-utils
+▪ Create a directory: mkdir EFSTest
+▪ Mount EFS: mount -t nfs4 DNS_NAME:/ EFSTest/
+▪ Navigate to the directory: cd EFSTest
+▪ Create files: touch file{1..5}
+▪ List files: ls
 </pre>
 
-## ✅ 5. Create a mount point and mount EFS (temporary)
 <pre>
-▪ Replace fs-012345... with your File system ID and region if needed.
-sudo mkdir -p /efs
-sudo mount -t efs fs-0123456789abcdef0:/ /efs
-# or using DNS (recommended): sudo mount -t efs fs-0123456789abcdef0:/ /efs
-▪ Verify:
-df -h | grep efs
-ls -la /efs
+⬜ Second EC2 Instance
+▪ Login to the second EC2 instance through SSH.
+▪ Run: sudo -s
+▪ Install NFS utilities: yum install -y nfs-utils
+▪ Create a directory: mkdir khushi
+▪ Mount EFS: mount -t nfs4 DNS_NAME:/ khushi/
+▪ List files: ls
+▪ Navigate to the directory: cd khushi
+▪ List files again: ls
+You will now see all the files that were created in the first EC2 instance.
 </pre>
 
-## ✅ 6. Make the mount persistent (optional but recommended)
-<pre>
-  ▪ Edit /etc/fstab and add:
-  fs-0123456789abcdef0:/ /efs efs defaults,_netdev 0 0
-  ▪ Then test:
-   sudo umount /efs
-   sudo mount -a
-</pre>
-
-## ✅ 7. Test file sharing across EC2 instances
-<p>
- ▪ On EC2-1:
-cd /efs
-sudo sh -c 'echo "Hello from EC2-1" > ec21.txt'
-ls -l /efs
- ▪ On EC2-2:
-cd /efs
-ls -l
-cat ec21.txt   # should display "Hello from EC2-1"
-</br>
-Create a file on EC2-2 and verify on EC2-1 similarly.
-</p>
-
-## ✅ 8. Set correct file permissions (if required)
-<p>
- ▪ Example to allow a specific user:
- sudo chown ec2-user:ec2-user /efs
- sudo chmod 775 /efs
-
- If using web servers, ensure the web server user (e.g., www-data or apache) has needed access.
-
-## ✅ 9. Cleanup (if you want to remove resources)
-<p>
- ▪ Unmount EFS: sudo umount /efs
- ▪ Delete EFS from console and terminate EC2 instances to avoid billing.
-</p>
+## ✅ 5.Now any changes made on one EC2 instance will automatically appear on the other EC2 instance.🎉
 
 # 👩‍💻 Author
 ## Khushi Nigam
-
 AWS EFS Distributed File System with EC2  Project | Cloud & DevOps Learner
