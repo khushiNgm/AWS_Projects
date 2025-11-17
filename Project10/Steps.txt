@@ -1,0 +1,81 @@
+Wordpress website hosting on EC2 with RDS with LAMP stack (Linux Apache MYSQL PHP)
+===================================================================================
+
+--> Lanuch a Amazon Linux 2 image EC2 instace
+--> Create a RDS MySql Engine(Private)
+--> Allow protocols in SG , MYSQL or anywhere
+
+========================== MYSQL Clinet ======================
+
+--> install MYSQL Clinet
+sudo dnf install -y mariadb105
+
+--> Export MySql endpoint as MYSQL_HOST Variable,
+Example: export MYSQL_HOST=endpoint (copy through RDS)
+export MYSQL_HOST=<your-RDS-endpoint>
+
+========================== Connect to RDS and create DB ==============================
+
+--> Connect to RDS mysql to create required database and users
+mysql -h endpoint -P 3306 -u admin -p 
+mysql -h mysqldb.c126q08ainew.ap-south-1.rds.amazonaws.com -P 3306 -u admin -p 
+
+--> Create a database
+
+CREATE DATABASE wordpress;
+CREATE USER 'wpuser'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILAGES ON Wordpress.* TO wpuser;
+FLUSH PRIVILEGES;
+Exit
+===========================================================================================
+Now install and configure Apache
+===========================================================================================
+
+sudo yum install -y httpd
+sudo service httpd start
+
+--> Download a Wordpress template and unzip the Wordpress
+wget https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+folder created= wordpress
+ls 
+cd wordpress
+
+--> create a wp-config file from sample file already provide
+cp wp-config-sample.php wp-config.php
+cat wp-config.php
+
+--> edit the wp-config.php file to point to database
+vi wp-config.php
+
+--> Replace the Database_name_here , "username_here", "password_here" and "rds-endpoint-name" with valid info 
+
+//** MYSQL settings -You can get this info from your web host ** //
+/** The name of the database for Wordpress */
+define ('DB_Name', 'Database_name_here-wordpress');
+
+https://api.wordpress.org/secret-key/1.1/salt/
+
+define('AUTH_KEY',         'bjV8;;8Nq;B$Un*I~a|mnZPe-bu1>7!y/Y+9:rtN! NKH?OLN}&{GPUho-7:m2bJ');
+define('SECURE_AUTH_KEY',  '6b6ri7+,p@18I3xA+w-UpyNco-(~qx:Im5so/?%?AOmn-Z,_+/Aa-6p+~P:z!8E.');
+define('LOGGED_IN_KEY',    'a!`=-NQ1r!OUUJm(%d&VOV#)VZg b@<!3B<}UfK>QHZd9Nkz0%r6kOFs*e6Jk:-&');
+define('NONCE_KEY',        'TV%49g1>1r%D2guihYA>$`Gz$asF.~4?HCvPE&CM^-SkAS:HF={4XvfMKenUnrK#');
+define('AUTH_SALT',        'jXJk5|0Z:t=0oia*0&~cIo}jOIj0l0e(8[*[%nr:?ho(&TQhRH$6]=-OQJ^HET6k');
+define('SECURE_AUTH_SALT', 'RgLJ?tK  L4SZnALdmVoIRhR6/,b+|/EwlplCj9nPw}zlJqOnI:`+/oN;cFNy+]>');
+define('LOGGED_IN_SALT',   'g,*!Jw!p.)UHd+qW|S4N94<|6-aAnKSvy;0mZ?D~]5p8|Xy-D7?;iR$]<~JAH^fi');
+define('NONCE_SALT',       '4`Gl%Xp-`b,6a*E@[(0ANU5pd`&.G#sCET]zOHU#ZG~uO50.(h~Hp@Z){4:mcQ60');
+
+=================================================================================
+--> Now install dependencies
+==================================================================================
+sudo dnf install -y httpd php php-mysqlnd php-cli php-curl php-json php-gd php-mbstring php-xml
+
+
+--> come back to home directory and copy all content to /var/www/html, Then restart the service.
+cd ..
+sudo cp -r wordpress/* /var/www/html
+cd /var/www/html
+ls
+sudo service httpd restart
+place public ip to the browser : it ask for username and password and install wordpress
+
