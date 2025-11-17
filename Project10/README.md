@@ -4,7 +4,7 @@
 This project demonstrates how to deploy a fully functional, scalable, and secure WordPress application on Amazon Web Services (AWS) using EC2 for compute and Amazon RDS (MySQL) for database management.
 By separating the application layer (EC2) and database layer (RDS), this architecture ensures improved performance, high availability, and easier maintenance—making it suitable for production-grade environments.
 
-<img src="Images/AmazonEFS.png" alt="AWS Architecture" width="550" height="500">
+<img src="Images/Project10.png" alt="AWS Architecture" width="550" height="500">
 
 ## ⚙️ Technologies Used
 <pre>
