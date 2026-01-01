@@ -76,13 +76,7 @@ Designed and implemented a full AWS infrastructure to host a web application wit
 #### 🟦 Step 1: Create User Group
 - Create a new group → **vpc-grp-01**
 - Attach the following permission policies:
-  1. AmazonVPCFullAccess
-  2. AmazonEC2FullAccess
-  3. AmazonS3FullAccess
-  4. ElasticLoadBalancingFullAccess
-  5. CloudFrontFullAccess
-  6. CloudWatchFullAccess
-  7. EC2InstanceConnect
+  1. AmazonVPCFullAccess, 2. AmazonEC2FullAccess, 3. AmazonS3FullAccess, 4. ElasticLoadBalancingFullAccess, 5. CloudFrontFullAccess, 6. CloudWatchFullAccess, 7. EC2InstanceConnect
 
 #### 🟦 Step 2: Create IAM User
 - Create IAM user → **Dev-User**
