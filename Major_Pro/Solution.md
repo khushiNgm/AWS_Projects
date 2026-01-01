@@ -1,25 +1,27 @@
+# 🚀Solution: AWS Scalable & Secure Web Hosting Architecture  
+
 ## 🪜 Step-by-Step Implementation
 
-### 1️⃣ Create IAM User & Permissions
+### 1️⃣ Create IAM User & Assign Permissions
 ![](Image/IAM-User.png)
 
 ### 2️⃣ VPC & Networking Setup
 ![](Image/Create-VPC.png)
 
-### **STEP 1: Create VPC**
+### **STEP : Create VPC**
 ![](Image/Task04.png)
 
-### **STEP 2: Create Subnets (2 Public + 2 Private)**
+### **STEP : Create Subnets (2 Public + 2 Private)**
 ![](Image/Subnets.png)
 
 
-### **STEP 3: Create Internet Gateway**
+### **STEP : Create Internet Gateway**
 ![](Image/InternetGateWay.png)
 
-### **STEP 4: Create Route Table**
+### **STEP : Create Route Table**
 ![](Image/RouteTable.png)
 
-### **STEP 5: Create NAT Gateway (for Private Subnets outbound access)**
+### **STEP : Create NAT Gateway (for outbound access from private subnets) **
 ![](Image/NATgateWay.png)
 
 
@@ -33,38 +35,22 @@
 ### 5️⃣ Configure Application Load Balancer (ALB)
 ![](Image/LB.png)
 
-### **STEP 1: Create ALB**
-![](Image/Task04.png)
-
-### **STEP 2: Configure Network Mapping**
-![](Image/Task04.png)
-
-### **STEP 3: Configure Security Group**
-![](Image/Task04.png)
-
-### **STEP 4: Listener & Target Group**
+### **STEP : Create ALB**
 ![](Image/Task04.png)
 
 ### 6️⃣ Deploy CloudFront Distribution
+![](Image/CF.png)
+
+
+### 7️⃣ S3 Logging Setup: Create Bucket
+![](Image/createBucket.png)
+
+### **STEP : Create Folder for Logs**
+![](Image/CreateFolder.png)
+
+### **STEP : Configure AWS CLI on EC2**
 ![](Image/Task04.png)
 
-### **STEP 1: Create Distribution**
-![](Image/Task04.png)
-
-### **STEP 2: Configure Origin**
-![](Image/Task04.png)
-
-### **STEP 3: Security Settings**
-![](Image/Task04.png)
-
-### **STEP 4: Review & Create**
-![](Image/Task04.png)
-
-### 7️⃣ S3 Logging Setup
-![](Image/Task04.png)
-
-### **STEP 2: Create Folder for Logs**
-![](Image/Task04.png)
-
-### **STEP 3: Configure AWS CLI on EC2**
-![](Image/Task04.png)
+![](Image/CreateFolder.png) 
+![](Image/Logs.png) 
+![](Image/AccessLogs.png) 
