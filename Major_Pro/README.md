@@ -76,7 +76,8 @@ Designed and implemented a full AWS infrastructure to host a web application wit
 #### 🟦 Step 1: Create User Group
 - Create a new group → **vpc-grp-01**
 - Attach the following permission policies:
-  1. AmazonVPCFullAccess, 2. AmazonEC2FullAccess, 3. AmazonS3FullAccess, 4. ElasticLoadBalancingFullAccess, 5. CloudFrontFullAccess, 6. CloudWatchFullAccess, 7. EC2InstanceConnect
+  1. AmazonVPCFullAccess, 2. AmazonEC2FullAccess, 3. AmazonS3FullAccess, 4. ElasticLoadBalancingFullAccess, 5. CloudFrontFullAccess,
+  6. CloudWatchFullAccess, 7. EC2InstanceConnect
 
 #### 🟦 Step 2: Create IAM User
 - Create IAM user → **Dev-User**
@@ -300,18 +301,19 @@ You can use this URL to access your website globally with improved performance a
 ```bash
 sudo snap install aws-cli --classic
 
-### Configure AWS credentials (Access Key + Secret Key)
+Configure AWS credentials (Access Key + Secret Key)
 aws configure
 
-### STEP 4: Upload Logs to S3
+STEP 4: Upload Logs to S3
 aws s3 cp /var/log/nginx/access.log <S3-URI>
 
 
-### 8 Testing & Validation
+8 Testing & Validation
 - Accessed application using ALB DNS & CloudFront URL
 - Auto traffic distribution observed (Round Robin)
 - Verified logs in S3 Bucket
 
+```
 
 # 🧾 Author
 ## Khushi Nigam
