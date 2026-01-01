@@ -317,5 +317,5 @@ aws s3 cp /var/log/nginx/access.log <S3-URI>
 
 # 🧾 Author
 ## Khushi Nigam
-AWS | Cloud | DevOps Learner
+AWS | Cloud | DevOps Learner  </br>
 📌 Passionate about building scalable cloud architecture & automation
