@@ -3,9 +3,7 @@
 
 ## 📘 Project Overview
 
-#### Designed and implemented a full AWS infrastructure to host a web application with high availability and low latency.  
-The setup includes a multi-AZ VPC design, public & private subnets, EC2 web servers behind an Application Load Balancer using Round-Robin traffic routing, and CloudFront CDN integration for global content distribution.  
-S3 logging and IAM-based controlled access ensure centralized monitoring, auditing, and security compliance.
+Designed and implemented a full AWS infrastructure to host a web application with high availability and low latency.The setup includes a multi-AZ VPC design, public & private subnets, EC2 web servers behind an Application Load Balancer using Round-Robin traffic routing, and CloudFront CDN integration for global content distribution.S3 logging and IAM-based controlled access ensure centralized monitoring, auditing, and security compliance.
 ---
 
 ## 📌 Key Highlights
