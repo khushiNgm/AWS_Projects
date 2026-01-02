@@ -8,7 +8,7 @@
 ### 2️⃣ VPC & Networking Setup
 ![](Image/Create-VPC.png)
 
-### **STEP : Create VPC**
+
 ![](Image/Task04.png)
 
 ### **STEP : Create Subnets (2 Public + 2 Private)**
@@ -35,7 +35,7 @@
 ### 5️⃣ Configure Application Load Balancer (ALB)
 ![](Image/LB.png)
 
-### **STEP : Create ALB**
+
 ![](Image/Task04.png)
 
 ### 6️⃣ Deploy CloudFront Distribution
@@ -48,8 +48,13 @@
 ### **STEP : Create Folder for Logs**
 ![](Image/CreateFolder.png)
 
-### **STEP : Configure AWS CLI on EC2**
+
 ![](Image/Task04.png)
+
+### **STEP : Configure AWS CLI on EC2**
+![](Image/LogUploaded.png)
+
+![](Image/CreateFolder.png)
 
 ![](Image/CreateFolder.png) 
 ![](Image/Logs.png) 
